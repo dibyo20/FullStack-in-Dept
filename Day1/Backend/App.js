@@ -4,7 +4,7 @@ const PORT = 2000;
 
 // console.log("Server is running"); // This line will execute immediately when the server starts, but it won't indicate that the server is actually listening for requests.
 
-app.get("/", (req, res) => {
+app.post("/", (req, res) => {
     res.send("Hello World");
 });
 
