@@ -142,6 +142,39 @@
 // }
 
 // Q21
+// while (true) {
+//     let a = prompt("Choose a symbol to perform the action: +, -, *, /, exit");
+//     if (a === null) {
+//         break;
+//     }
+//     if (a === "exit") {
+//         break;
+//     }
+//     if (a === '+') {
+//         let b = Number(prompt("Enter first numbers to add"));
+//         let c = Number(prompt("Enter second numbers to add"));
+//         console.log(`Sum is: ${b + c}`);
+//     } else if (a === '-') {
+//         let b = Number(prompt("Enter first numbers to subtract"));
+//         let c = Number(prompt("Enter second numbers to subtract"));
+//         console.log(`Difference is: ${b - c}`);
+//     } else if (a === '*') {
+//         let b = Number(prompt("Enter first numbers to multilpy"));
+//         let c = Number(prompt("Enter second numbers to multilpy"));
+//         console.log(`Product is: ${b * c}`);
+//     } else if (a === '/') {
+//         let b = Number(prompt("Enter first numbers to divide"));
+//         let c = Number(prompt("Enter second numbers to divide"));
+//         if (c === 0) {
+//             alert("please enter a valid number to divide");
+//             continue;
+//         }
+//         console.log(`Quitent is: ${Math.floor(b / c)}`);
+//     }
+//     else {
+//         alert("Please choose a valid option");
+//     }
+// }
 
 // Q22
 // let arr = [];
@@ -165,6 +198,26 @@
 // }
 
 // Q23
+// let balance = 5000;
+// while (true) {
+//     let a = prompt("choose what u want to perfom: Check balance, Deposit, Withdraw, Exit");
+//     a = a.toLowerCase();
+//     if (a === "check balance") {
+//         console.log(`Your available balance is: ${balance}`);
+//     } else if (a === "deposit") {
+//         let b = Number(prompt("Enter amount to be deposited"));
+//         balance = balance + b;
+//         console.log(`Your available balance after deposition of ${b} is: ${balance}`);
+//     } else if (a === "withdraw") {
+//         let c = Number(prompt("Enter amount to withdraw"));
+//         balance = balance - c;
+//         console.log(`Your available balance after withdraw of ${c} is: ${balance}`);
+//     } else if (a === "exit") {
+//         break;
+//     } else {
+//         alert("Please enter a valid option to procced");
+//     }
+// }
 
 // Q24
 // let a = prompt("Enter a word");
