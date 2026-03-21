@@ -191,8 +191,6 @@ images.forEach((img, idx) => {
 
         likeIcon.style.opacity = 0.9;
         likeIcon.style.transform = "translate(-15%, -15%) scale(1) rotate(0deg)";
-
-        // console.log(idx);
         arr[idx]++;
         likecount.innerHTML = arr[idx];
 
