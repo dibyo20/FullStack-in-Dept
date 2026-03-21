@@ -1,0 +1,30 @@
+body{
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 10px;
+    font-family: monospace;
+}
+
+.box{
+    height: 400px;
+    width: 400px;
+    border: 1px solid white;
+    background-color: rgb(206, 45, 59);
+    border-radius: 10px;
+}
+
+.button{
+    width: 100px;
+    height: 45px;
+    cursor: pointer;
+    background-color: rgb(47, 255, 50);
+    border-radius: 5px;
+}  
+
+.button:active{
+    scale: 0.9;
+}

@@ -1,0 +1,21 @@
+*{
+    background-color: black;
+    color: white;
+}
+
+.box{
+    height: 300px;
+    width: 300px;
+    background-color: red;
+}
+
+.circle{
+    height: 300px;
+    width: 300px;
+    background-color: red;
+    border: 1px solid red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

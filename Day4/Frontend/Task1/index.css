@@ -1,0 +1,36 @@
+body{
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card{
+    height: 25rem;
+    width: 20rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card img{
+    height: 22rem;
+    width: 18rem;
+    overflow: hidden;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+.card i {
+    position: absolute;
+    color: rgb(246, 8, 48);
+    font-size: 3rem;
+    opacity: 0;
+    transform: translate(0%, 0%) scale(0) rotate(-90deg);
+    transition: all 0.2s ease-in-out;
+}
