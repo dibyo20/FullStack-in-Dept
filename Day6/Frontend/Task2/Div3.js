@@ -20,7 +20,6 @@ const Div3 = () => {
                     React.createElement("i", {
                         className: "fa-regular fa-bell"
                     }),
-                    // React.createElement("span", { id: "badge" }, "9+")
                 ]
             ),
             React.createElement("div", { id: "profile" }, "D")
