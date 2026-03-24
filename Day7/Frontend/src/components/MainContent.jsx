@@ -5,6 +5,7 @@ import ncrLogo from "../logos/ncr.png";
 import dropboxLogo from "../logos/Dropbox.svg";
 import disneyLogo from "../logos/Disney.png";
 import phoneImg from "../logos/phone3.png";
+import humanImg from "../logos/human.png"
 
 const MainContent = () => {
   return (
@@ -56,6 +57,9 @@ const MainContent = () => {
             </div>
           </div>
           <div className="right-half">
+            <div className="humanImg">
+              <img src={humanImg}></img>
+            </div>
             <div className="badge">
               <div className="badge2">
                 <i class="fa-solid fa-fingerprint"></i>

@@ -325,15 +325,26 @@
   border-radius: 200px;
   /* background-color: rgba(133, 71, 240, 0.863); */
   /* background-color: #8987ff; */
-  background: linear-gradient(#6860ff, #d4ceff);
+  background: linear-gradient(#6f67ff, #cbc3ff);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
+.humanImg {
+  position: absolute;
+}
+
+.humanImg img{
+  margin-top: 2rem;
+  margin-left: 2.5rem;
+  width: 170px;
+  height: 420px;
+}
+
 .badge {
   position: absolute;
-  right: -40px;
+  right: -49px;
   top: 170px;
   width: 90px;
   height: 90px;
@@ -369,6 +380,7 @@
   flex-direction: column;
   background-color: #ffffff;
   margin-top: auto;
+  z-index: 10;
 }
 
 .bottom-part h1 {
