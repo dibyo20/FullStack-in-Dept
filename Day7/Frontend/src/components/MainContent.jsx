@@ -4,6 +4,7 @@ import mondayLogo from "../logos/monday.png";
 import ncrLogo from "../logos/ncr.png";
 import dropboxLogo from "../logos/Dropbox.svg";
 import disneyLogo from "../logos/Disney.png";
+import phoneImg from "../logos/phone3.png";
 
 const MainContent = () => {
   return (
@@ -48,9 +49,18 @@ const MainContent = () => {
               <span>Successful Call </span>
               <span>Rates.</span>
             </div>
-            <div className="bottom-sec"></div>
+            <div className="bottom-sec">
+              <div className="phoneDiv">
+                <img src={phoneImg}></img>
+              </div>
+            </div>
           </div>
           <div className="right-half">
+            <div className="badge">
+              <div className="badge2">
+                <i class="fa-solid fa-fingerprint"></i>
+              </div>
+            </div>
             <div className="bottom-part">
               <h1>3M</h1>
               <span>Active Registered</span>

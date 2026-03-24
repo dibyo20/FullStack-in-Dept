@@ -289,7 +289,33 @@
   height: 65%;
   /* border: 1px solid black; */
   border-radius: 200px;
-  background-color: yellow;
+  /* background-color: yellow; */
+  /* background-color: #fff7b0; */
+  background: linear-gradient(#ffe81c,#fff8b6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.phoneDiv{
+  width: 170px;
+}
+
+.phoneDiv img {
+  width: 170px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  /* object-fit: contain; */
+  /* position: absolute; */
+  /* bottom: -50px; */
+  margin-top: 150px;
 }
 
 .right-half {
@@ -297,9 +323,39 @@
   height: 575px;
   /* border: 1px solid black; */
   border-radius: 200px;
-  background-color: rgba(133, 71, 240, 0.863);
+  /* background-color: rgba(133, 71, 240, 0.863); */
+  /* background-color: #8987ff; */
+  background: linear-gradient(#6860ff, #d4ceff);
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  right: -40px;
+  top: 170px;
+  width: 90px;
+  height: 90px;
+  background: #ffeb36;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-size: 10px;
+  font-weight: bold; */
+}
+
+.badge2 {
+  width: 56px;
+  height: 56px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
 }
 
 .right-half .bottom-part {
@@ -378,7 +434,7 @@
 .footer {
   width: 100%;
   height: 60px;
-  background-color: #2fb56f;
+  background-color: #34c379;
   color: black;
   display: flex;
   align-items: center;
