@@ -9,7 +9,8 @@ const notesSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "pending",
+        enum: ["Pending", "Completed", "Rejected"],
+        default: "Pending",
     }
 });
 
