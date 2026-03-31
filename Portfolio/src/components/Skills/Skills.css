@@ -1,0 +1,63 @@
+.skills {
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.skills h2 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-weight: 300;
+  font-family: 'Playfair Display', serif;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  max-width: 800px;     /* controls how many per row */
+  margin: auto;
+}
+
+/* Individual Skill Box */
+.skill-box {
+  border: 1px solid #222;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: default;
+  transition: all 0.25s ease;
+}
+
+/* Hover Effect */
+.skill-box:hover {
+  border-color: white;
+  transform: translateY(-3px);
+  scale: 1.1;
+}
+
+/* Optional: subtle entrance animation */
+.skill-box {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+/* Stagger effect */
+.skill-box:nth-child(1) { animation-delay: 0.05s; }
+.skill-box:nth-child(2) { animation-delay: 0.1s; }
+.skill-box:nth-child(3) { animation-delay: 0.15s; }
+.skill-box:nth-child(4) { animation-delay: 0.2s; }
+.skill-box:nth-child(5) { animation-delay: 0.25s; }
+.skill-box:nth-child(6) { animation-delay: 0.3s; }
+.skill-box:nth-child(7) { animation-delay: 0.35s; }
+.skill-box:nth-child(8) { animation-delay: 0.4s; }
+.skill-box:nth-child(9) { animation-delay: 0.45s; }
+.skill-box:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,42 @@
+.hero-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Profile Image */
+.hero-content img {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+  border: 2px solid #1f1f1f;
+}
+
+/* Main Name */
+.hero-content h1:first-of-type {
+  font-size: 5rem;
+  font-weight: 300;
+  margin-bottom: 10px;
+  line-height: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Role */
+.hero-content h1:nth-of-type(2) {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 1rem;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Tagline */
+.hero-content p {
+  font-size: 1.6rem;
+  color: var(--secondary-text);
+}

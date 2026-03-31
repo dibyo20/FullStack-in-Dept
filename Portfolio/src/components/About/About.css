@@ -1,0 +1,76 @@
+.about {
+  padding: 100px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* About Heading */
+.about h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+/* About Content */
+.about-content {
+  max-width: 800px;
+}
+
+.about-content p {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  line-height: 1.7;
+}
+
+.about-content a {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.3s ease;
+}
+
+.about-content a:hover {
+    opacity: 1;
+    /* scale: 1.1; */
+}
+
+.know-more {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #aaa;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover color change */
+.know-more:hover {
+  color: white;
+}
+
+/* Underline animation */
+.know-more::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 1px;
+  background: white;
+  transition: 0.3s ease;
+}
+
+.know-more:hover::after {
+  width: 100%;
+}
