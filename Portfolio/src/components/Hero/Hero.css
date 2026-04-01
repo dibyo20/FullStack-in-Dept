@@ -6,6 +6,7 @@
   justify-content: center;
   text-align: center;
   padding: 0 20px;
+  padding-top: calc(70px + 20px);
 }
 
 /* Profile Image */
@@ -19,24 +20,90 @@
 }
 
 /* Main Name */
-.hero-content h1:first-of-type {
-  font-size: 5rem;
+.hero-content h1 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 300;
-  margin-bottom: 10px;
-  line-height: 1rem;
-  font-family: 'Playfair Display', serif;
+  margin-bottom: 0px;
+  line-height: 1.1;
+  font-family: "Playfair Display", serif;
 }
 
-/* Role */
-.hero-content h1:nth-of-type(2) {
-  font-size: 5rem;
-  font-weight: 300;
-  line-height: 1rem;
-  font-family: 'Playfair Display', serif;
+@media (max-width: 500px) {
+  .hero-content h1 {
+    line-height: 1;
+  }
 }
 
 /* Tagline */
 .hero-content p {
-  font-size: 1.6rem;
+  font-size: clamp(1.2rem, 2vw, 1.3rem);
   color: var(--secondary-text);
+  max-width: 800px;
+  margin: 20px auto;
+  line-height: 1;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.hero-btn {
+  text-decoration: none;
+  color: #aaa;
+  font-size: 0.95rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  scale: 1.02;
+  transform: translateY(-2px);
+}
+
+.hero-icons {
+  display: flex;
+  gap: 10px;
+  margin-left: 3px;
+}
+
+.hero-icon {
+  width: 45px;
+  height: 2.4rem;
+  border-radius: 23%;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #aaa;
+  font-size: 0.95rem;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.hero-icon:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  scale: 1.02;
+  transform: translateY(-2px);
 }

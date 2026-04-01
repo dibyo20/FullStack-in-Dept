@@ -1,7 +1,8 @@
-import React from "react";
 import "./Navbar.css";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="navbar-wrapper">
       <div className="navbar">
@@ -11,10 +12,10 @@ const Navbar = () => {
 
         <div className="divider" />
 
-        <div className="nav-center">
-          <a href="/">About</a>
-          <a href="/">Projects</a>
-          <a href="/">Contact</a>
+        <div className={`nav-center ${menuOpen ? "active" : ""}`}>
+          <a href="/" className="ver-nav">Home</a>
+          <a href="/" className="ver-nav">About</a>
+          <a href="/" className="project-nav">Projects</a>
 
           <button className="resume-btn">Resume</button>
         </div>
@@ -22,6 +23,12 @@ const Navbar = () => {
         <div className="divider" />
 
         <div className="nav-right">
+          <button
+            className={`hamburger ${menuOpen ? "active" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            ☰
+          </button>
           <span className="theme-icon">🌙</span>
         </div>
       </div>
