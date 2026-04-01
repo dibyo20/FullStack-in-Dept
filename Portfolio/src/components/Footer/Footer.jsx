@@ -21,7 +21,7 @@ const Footer = () => {
 
       <div className="footer-links">
         <a href="/">LinkedIn</a>
-        <a href="/">GitHub</a>
+        <a href="https://github.com/dibyo20">GitHub</a>
         <a href="/">Instagram</a>
       </div>
     </footer>

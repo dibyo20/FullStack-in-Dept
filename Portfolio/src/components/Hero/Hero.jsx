@@ -1,10 +1,11 @@
 import React from "react";
 import "./Hero.css";
+import profileImg from "../../Assests/myImg.png";
 
 const Hero = () => {
   return (
     <div className="hero-content">
-      <img src="" alt="img" />
+      <img src={profileImg} alt="img" />
       <h1>
         Hi, I'm Dibyo Banerjee <br />
         Full Stack Software Developer
@@ -23,7 +24,7 @@ const Hero = () => {
             <i className="fab fa-linkedin-in"></i>
           </a>
 
-          <a href="/" className="hero-icon">
+          <a href="https://github.com/dibyo20" className="hero-icon">
             <i className="fab fa-github"></i>
           </a>
         </div>
