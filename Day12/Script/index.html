@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        button {
+            background-color: rgb(0, 191, 89);
+            color: rgb(255, 255, 255);
+            border-radius: 5px;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        button:active {
+            scale: calc(0.95);
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>0</h1>
+    <button>Increase</button>
+
+    <script>
+        let h = document.querySelector("h1");
+        let btn = document.querySelector("button");
+        let count = 0;
+        btn.addEventListener("click", () => {
+            count++;
+            h.innerHTML = count;
+        })
+    </script>
+</body>
+
+</html>
