@@ -12,7 +12,8 @@ const skills = [
   "MySQL",
   "Git",
   "GitHub",
-  "VS Code"
+  "VS Code",
+  "Postman"
 ];
 
 const Skills = () => {
