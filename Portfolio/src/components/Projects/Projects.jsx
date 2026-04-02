@@ -1,31 +1,43 @@
 import React from "react";
 import "./Projects.css";
 import ProjectCard from "./ProjectCard";
+import weatherApp from "../../Assests/weatherApp.png";
+import qrCodeGenImg from "../../Assests/qrCodeGen.png";
+import passWordGenImg from "../../Assests/passWordGen.png";
+import instaImg from "../../Assests/instaUI.png";
 
 const Projects = () => {
   const projectData = [
     {
-      title: "Stock Trading Platform",
-      desc: "Stock trading dashboard.",
-      tech: ["React", "Node.js", "MongoDB"],
-      image: "/projects/stock.png",
-      github: "#",
-      live: "#",
-    },
-    {
-      title: "Task Manager",
-      desc: "Task manager with filters and clean UI.",
-      tech: ["React", "CSS", "HTML", "JS"],
-      image: "/projects/task.png",
-      github: "#",
+      title: "Instagram UI",
+      desc: "Instagram Home Page.",
+      tech: ["HTML", "CSS", "JS"],
+      image: instaImg,
+      github: "https://github.com/dibyo20/JavaScript-Basic-Projects/tree/main/Project-1",
       live: "#",
     },
     {
       title: "Weather App",
       desc: "Real Time weather app.",
       tech: ["React", "HTML", "CSS", "JS"],
-      image: "/projects/stock.png",
-      github: "#",
+      image: weatherApp,
+      github: "https://github.com/dibyo20/weather-app",
+      live: "https://weather-app-topaz-tau-90.vercel.app/",
+    },
+    {
+      title: "PassWord Generator",
+      desc: "Simple and Secure Password Generator.",
+      tech: ["HTML", "CSS", "JS"],
+      image: passWordGenImg,
+      github: "https://github.com/dibyo20/JavaScript-Basic-Projects/tree/main/Password%20Generator",
+      live: "#",
+    },
+    {
+      title: "QR Code Generator",
+      desc: "Generates QR Code for any type of URL.",
+      tech: ["CSS", "HTML", "JS"],
+      image: qrCodeGenImg,
+      github: "https://github.com/dibyo20/JavaScript-Basic-Projects/tree/main/QR%20Code%20Generator",
       live: "#",
     },
   ];

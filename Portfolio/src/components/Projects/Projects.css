@@ -1,6 +1,12 @@
 .projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px;
   padding: 80px 20px;
   text-align: center;
+  margin: 0 auto; 
 }
 
 .projects h2 {
