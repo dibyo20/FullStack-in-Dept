@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 
 const App = () => {
   const [count, setCount] = useState(0);
 
-  function increase() {
+  function inc() {
     setCount(count + 1);
   }
 
-  function decrease() {
+  function dec() {
     setCount(count - 1);
   }
-
   return (
     <div>
       <h1>{count}</h1>
-      <button onClick={increase}>Increase</button>
-      <button onClick={decrease}>Decrease</button>
+      <button onClick={inc}>Increase</button>
+      <button onClick={dec}>Decrease</button>
     </div>
   );
 };
