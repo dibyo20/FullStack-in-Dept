@@ -62,6 +62,10 @@
   transition: color 0.3s ease;
 }
 
+.nav-center .on{
+  color: #fff;
+}
+
 .nav-center a::after {
   content: "";
   position: absolute;

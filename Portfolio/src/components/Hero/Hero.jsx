@@ -20,7 +20,7 @@ const Hero = () => {
           Contact Me
         </a>
         <div className="hero-icons">
-          <a href="/" className="hero-icon">
+          <a href="www.linkedin.com/in/dibyo-banerjee-6a2428270" className="hero-icon">
             <i className="fab fa-linkedin-in"></i>
           </a>
 

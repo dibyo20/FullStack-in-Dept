@@ -1,5 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react";
+import { Moon } from "lucide-react";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,9 +14,15 @@ const Navbar = () => {
         <div className="divider" />
 
         <div className={`nav-center ${menuOpen ? "active" : ""}`}>
-          <a href="/" className="ver-nav">Home</a>
-          <a href="/" className="ver-nav">About</a>
-          <a href="/" className="project-nav">Projects</a>
+          <a href="/" className="ver-nav on">
+            Home
+          </a>
+          <a href="/" className="ver-nav">
+            About
+          </a>
+          <a href="/" className="project-nav">
+            Projects
+          </a>
 
           <button className="resume-btn">Resume</button>
         </div>
@@ -29,7 +36,9 @@ const Navbar = () => {
           >
             ☰
           </button>
-          <span className="theme-icon">🌙</span>
+          <span className="theme-icon">
+            <Moon size={20} strokeWidth={1.5} />
+          </span>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="footer-line"></div>
 
       <div className="footer-links">
-        <a href="/">LinkedIn</a>
+        <a href="www.linkedin.com/in/dibyo-banerjee-6a2428270">LinkedIn</a>
         <a href="https://github.com/dibyo20">GitHub</a>
         <a href="/">Instagram</a>
       </div>
