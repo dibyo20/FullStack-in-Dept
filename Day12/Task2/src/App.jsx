@@ -9,7 +9,7 @@ const App = () => {
       <h1>{users[user]}</h1>
       <button
         onClick={() => {
-          if (user < users.length-1) {
+          if (user < users.length - 1) {
             setUser(user + 1);
           }
         }}
