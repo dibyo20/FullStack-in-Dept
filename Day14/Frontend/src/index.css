@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #000;
+  color: white;
+}
+
+/* --------------------------------------------FormField-------------------------------------------------------- */
+
+/* Full screen center */
+.container {
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #141c31, #1e293b);
+  flex-direction: column;
+  padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+/* Title */
+.container h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Glass Card */
+.form {
+  width: 320px;
+  padding: 30px;
+  border-radius: 16px;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+}
+
+/* Inputs */
+.form input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Placeholder */
+.form input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Focus Effect */
+.form input:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(36, 152, 209, 0.4);
+}
+
+/* Button */
+form button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: white;
+  font-weight: bold;
+  transition: 0.1s ease;
+}
+
+/* Hover */
+form button:active {
+  scale: 0.9;
+}
+
+/* -------------------------------------Card-------------------------------------- */
+
+/* Centering */
+.card-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  gap: 20px;
+  padding-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* Card */
+.glass-card {
+  width: 300px;
+  min-height: 280px;
+  border-radius: 20px;
+  padding: 16px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  color: white;
+  transition: all 0.4s ease;
+}
+
+/* Hover Lift */
+.glass-card:hover {
+  transform: translateY(-8px);
+}
+
+.glass-card button {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: rgba(239, 68, 68, 0.8);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glass-card button:active {
+  background: rgba(220, 38, 38, 1);
+  scale: 0.9;
+}
+
+/* Image */
+.card-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 12px;
+}
+
+.image-div {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Content */
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Name */
+.card-content h3 {
+  margin: 0;
+}
+
+/* Role */
+.role {
+  font-size: 14px;
+  color: #d1d5db;
+  margin-top: 4px;
+  margin: 0;
+}
+
+/* Description */
+.desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #e5e7eb;
+}
