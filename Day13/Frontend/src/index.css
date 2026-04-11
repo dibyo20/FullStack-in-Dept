@@ -1,0 +1,12 @@
+body{
+  background-color: black;
+  color: white;
+}
+.Card{
+  height: fit-content;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background-color: rgb(255, 0, 81);
+  margin-top: 5px;
+}
