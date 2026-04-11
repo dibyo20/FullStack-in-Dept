@@ -90,7 +90,7 @@ form button:active {
   width: 100%;
   display: flex;
   justify-content: center;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
+  /* background: linear-gradient(135deg, #0f172a, #1e293b); */
   gap: 20px;
   padding-top: 40px;
   flex-wrap: wrap;
