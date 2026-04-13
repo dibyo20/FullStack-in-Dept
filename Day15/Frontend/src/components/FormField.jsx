@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const FormField = () => {
+const FormField = ({ type = "text", name, value, onChange, placeholder }) => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+    />
+  );
+};
 
-export default FormField
+export default FormField;
