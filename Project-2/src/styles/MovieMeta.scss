@@ -1,0 +1,31 @@
+.hero-content {
+  max-width: 600px;
+  margin-left: 40px;
+
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 16px;
+    color: #ddd;
+    line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    h1 {
+      font-size: 32px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
+}

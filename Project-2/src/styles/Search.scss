@@ -1,0 +1,13 @@
+.search {
+  display: flex;
+  justify-content: center;
+  padding: 20px 40px;
+  .search-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 900px;
+  }
+}

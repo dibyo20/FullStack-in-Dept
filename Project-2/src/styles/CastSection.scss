@@ -1,0 +1,69 @@
+.cast-section {
+  margin-top: 10px;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 14px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 3px;
+      height: 70%;
+      width: 5px;
+      background: red;
+      border-radius: 3px;
+    }
+  }
+
+  .cast-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .cast-card {
+    min-width: 150px;
+    cursor: pointer;
+
+    .cast-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 18px;       
+      overflow: hidden;          
+      margin-bottom: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;        
+        transition: transform 0.6s ease;
+      }
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    &:hover .cast-img img {
+      transform: scale(1.08);   
+    }
+  }
+}

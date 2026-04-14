@@ -1,0 +1,26 @@
+.filter {
+  flex: 0 0 auto;
+  height: 45px;
+  padding: 0 28px 0 12px;
+  border-radius: 8px;
+  border: 1px solid #222;
+  background: #0f0f0f;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  appearance: none;
+  position: relative;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+  &:focus {
+    border-color: red;
+    box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.3);
+  }
+  &:hover {
+      border-color: #fa0101;
+  }
+}
