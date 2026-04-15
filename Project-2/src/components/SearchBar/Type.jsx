@@ -1,12 +1,20 @@
 import React from "react";
-import "../../styles/Type.scss"
+import "../../styles/Type.scss";
 
-const Type = () => {
+const Type = ({ setType }) => {
+  const handleChnage = (e) => {
+    setType(e.target.value);
+  };
   return (
-    <select className="filter">
+    <select
+      className="filter"
+      onChange={(e) => {
+        handleChnage(e);
+      }}
+    >
+      <option value="">All</option>
       <option value="movie">Movie</option>
       <option value="series">Series</option>
-      <option value="episode">Episode</option>
     </select>
   );
 };

@@ -9,8 +9,8 @@ const Search = (props) => {
     <div className="search">
       <div className="search-section">
         <SearchBar setQuery={props.setQuery} />
-        <Year />
-        <Type />
+        <Year setYear={props.setYear} />
+        <Type setType={props.setType} />
       </div>
     </div>
   );

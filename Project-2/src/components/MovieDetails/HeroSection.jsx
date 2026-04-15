@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/HeroSection.scss";
 
-const HeroSection = () => {
+const HeroSection = ({movie}) => {
   return (
     <div
       className="hero"
