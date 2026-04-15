@@ -5,7 +5,7 @@ const Poster = ({movie}) => {
     <div className="poster-card">
       <img
         src={movie.Poster}
-        alt={movie.Title}
+        alt={movie.Title} 
       />
     </div>
   );

@@ -21,6 +21,9 @@
     box-shadow: 0 0 0 1px rgba(255, 0, 0, 0.3);
   }
   &:hover {
-      border-color: #fa0101;
+    border-color: #fa0101;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 20px 0 10px;
   }
 }

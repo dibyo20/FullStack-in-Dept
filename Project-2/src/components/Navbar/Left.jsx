@@ -9,9 +9,9 @@ const Left = () => {
         <div className="links">
             <Link className='nav-items active'>Movies</Link>
             <Link className='nav-items'>TV Shows</Link>
-        </div>
+        </div> 
     </div>
-  )
+  ) 
 }
 
 export default Left

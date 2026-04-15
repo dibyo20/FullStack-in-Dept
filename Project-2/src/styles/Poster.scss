@@ -1,6 +1,6 @@
 .poster-card {
-  width: 390px;
-  height: 580px;
+  width: clamp(230px, 25vw, 390px);
+  height: clamp(380px, 35vw, 580px);
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
@@ -10,7 +10,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-
     transition: transform 1s ease;
   }
 

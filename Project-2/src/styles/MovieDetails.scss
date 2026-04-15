@@ -26,8 +26,9 @@
       gap: 30px;
     }
     @media (max-width: 768px) {
-        display: flex;
-        flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px;
     }
   }
 }
