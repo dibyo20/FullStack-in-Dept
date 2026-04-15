@@ -6,6 +6,7 @@ import Card from "../components/MainContent/Card.jsx";
 import "../styles/Card.scss";
 
 const HomePage = () => {
+  const [query, setQuery] = useState("hollywood");
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -13,7 +14,7 @@ const HomePage = () => {
       const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
       const { data } = await axios.get(
-        `https://www.omdbapi.com/?apikey=${API_KEY}&s=batman`,
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`,
       );
       if (data.Response === "True") {
         setMovies(data.Search);
@@ -24,17 +25,20 @@ const HomePage = () => {
     };
 
     fetchMovies();
-  }, []);
+  }, [query]);
+
+  useEffect(() => {
+    console.log(movies);
+  }, [movies]);
 
   return (
     <div>
       <Navbar />
-      <Search />
+      <Search setQuery={setQuery} />
       <div className="card-container">
         {movies.map(function (elem, idx) {
           return <Card data={elem} key={idx} />;
         })}
-        {/* <Card /> */}
       </div>
     </div>
   );

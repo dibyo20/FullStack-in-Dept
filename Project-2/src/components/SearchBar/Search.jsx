@@ -4,11 +4,11 @@ import SearchBar from "./SearchBar";
 import Year from "./Year";
 import Type from "./Type";
 
-const Search = () => {
+const Search = (props) => {
   return (
     <div className="search">
       <div className="search-section">
-        <SearchBar />
+        <SearchBar setQuery={props.setQuery} />
         <Year />
         <Type />
       </div>
