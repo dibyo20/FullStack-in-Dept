@@ -1,17 +1,17 @@
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
   padding: 10px 50px;
 
   .movie-card {
     position: relative;
-    width: 200px;
-    height: 320px;
+    width: 100%;
+    aspect-ratio: 2 / 3;
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
+    padding: 0px;
 
     img {
       width: 100%;
@@ -20,7 +20,6 @@
       transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    /* Image hover effect */
     &:hover img {
       transform: scale(1.07);
       filter: brightness(0.7);
@@ -54,12 +53,10 @@
         transparent
       );
       color: white;
-
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.4s ease;
 
-      /* ✅ Initial hidden state (ONLY title + CTA) */
       h3,
       .cta {
         opacity: 0;
@@ -75,56 +72,46 @@
       .cta {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 4px;
         cursor: pointer;
 
         .play-btn {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          border: none;
-          background: red;
-          color: white;
-          font-size: 14px;
+          background: none;
+          color: red;
+          font-size: 20px;
           cursor: pointer;
-
           transform: scale(0.8);
           transition: transform 0.3s ease;
         }
 
         span {
-          font-size: 14px;
+          font-size: 13px;
           opacity: 0.9;
         }
       }
     }
 
-    /* Overlay appears */
     &:hover .overlay {
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* 🔥 Title first */
     &:hover .overlay h3 {
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0.1s;
     }
 
-    /* 🔥 CTA together (button + text) */
     &:hover .overlay .cta {
       opacity: 1;
       transform: translateY(0);
       transition-delay: 0.3s;
     }
 
-    /* Button pop */
     &:hover .play-btn {
       transform: scale(1);
     }
 
-    /* CTA hover polish */
     .cta:hover span {
       text-decoration: underline;
     }

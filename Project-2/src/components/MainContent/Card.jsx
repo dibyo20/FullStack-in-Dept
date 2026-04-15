@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/Card.scss";
+import { FaRegPlayCircle } from "react-icons/fa";
 
 const Card = (props) => {
   return (
@@ -14,10 +15,10 @@ const Card = (props) => {
           <h3>{props.data.Title}</h3>
 
           <div className="cta">
-            <button className="play-btn">▶</button>
+            <span className="play-btn"><FaRegPlayCircle /></span>
             <span>View Details</span>
           </div>
-        </div>
+        </div> 
       </div>
 
   );

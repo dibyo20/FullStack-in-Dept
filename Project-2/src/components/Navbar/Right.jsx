@@ -1,14 +1,20 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import "../../styles/RightSection.scss"
+import React from "react";
+import { Link } from "react-router-dom";
+import "../../styles/RightSection.scss";
+import { MdOutlineWbSunny } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Right = () => {
   return (
-    <div className='right'>
-        <button>Theme</button>
-        <Link>Sign In</Link>
-    </div>
-  )
-}
+    <div className="right">
+      <span className="theme">
+        <MdOutlineWbSunny />
+      </span>
 
-export default Right
+      <Link className="signin">Sign In</Link>
+      <Link className="ham"><RxHamburgerMenu/></Link>
+    </div>
+  );
+};
+
+export default Right;

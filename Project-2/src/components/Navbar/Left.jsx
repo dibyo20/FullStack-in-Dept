@@ -5,10 +5,10 @@ import "../../styles/LeftSection.scss"
 const Left = () => {
   return (
     <div className='left'>
-        <div className="logo">MovieMania</div>
+        <div className="logo">CineLens</div>
         <div className="links">
-            <Link>Movies</Link>
-            <Link>TV Shows</Link>
+            <Link className='nav-items active'>Movies</Link>
+            <Link className='nav-items'>TV Shows</Link>
         </div>
     </div>
   )

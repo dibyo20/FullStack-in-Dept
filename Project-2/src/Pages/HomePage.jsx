@@ -8,16 +8,17 @@ import "../styles/Card.scss";
 const HomePage = () => {
   const [query, setQuery] = useState("hollywood");
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchMovies = async () => {
       const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
 
       const { data } = await axios.get(
-        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`,
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}&page=${page}`,
       );
       if (data.Response === "True") {
-        setMovies(data.Search);
+        setMovies((prev) => [...prev, ...(data.Search || [])]);
         console.log(movies);
       } else {
         console.log("API ERROR", data.Error);
@@ -25,7 +26,7 @@ const HomePage = () => {
     };
 
     fetchMovies();
-  }, [query]);
+  }, [query, page]);
 
   useEffect(() => {
     console.log(movies);
