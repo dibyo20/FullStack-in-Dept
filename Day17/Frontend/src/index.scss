@@ -1,0 +1,25 @@
+body {
+  background-color: rgb(52, 139, 158);
+  color: white;
+}
+
+.component {
+  background: linear-gradient(to bottom right, #10b981, #15803d);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  width: 160px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(20, 83, 45, 0.3);
+  transition: all 0.3s ease-in-out;
+  margin-left: 16px;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(20, 83, 45, 0.4);
+  }
+}

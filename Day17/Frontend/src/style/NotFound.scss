@@ -1,0 +1,42 @@
+.notfound {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(to bottom right, #064e3b, #047857, #22c55e);
+  &__card {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding: 40px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  &__title {
+    font-size: 60px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+  }
+  &__text {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+  }
+  &__btn {
+    display: inline-block;
+    padding: 12px 24px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
