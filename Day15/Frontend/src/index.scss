@@ -14,7 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #141c31, #1e293b);
+  background: linear-gradient(135deg, #0882ce, #8e0209);
   flex-direction: column;
   padding-bottom: 40px;
   padding-top: 40px;
@@ -90,7 +90,7 @@ form button:active {
   width: 100%;
   display: flex;
   justify-content: center;
-  /* background: linear-gradient(135deg, #0f172a, #1e293b); */
+   background: linear-gradient(135deg, #8e0209, #0882ce); 
   gap: 20px;
   padding-top: 40px;
   flex-wrap: wrap;
