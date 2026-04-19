@@ -7,7 +7,8 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <Outlet /> // This will render the child component of the Layout component
+      <Outlet />{" "}
+      {/* This will render the child component of the Layout component */}
       <Footer />
     </>
   );
