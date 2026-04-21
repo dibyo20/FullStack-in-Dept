@@ -1,25 +1,10 @@
-const express = require("express");
-const app = express();
-const PORT = 2019;
-const cors = require("cors");
+require("dotenv").config();
+const app = require("./src/app.js");
+const PORT = process.env.PORT;
+const connectDb = require("./src/config/db.js");
 
-app.use(cors({
-    origin: "http://localhost:5173",
-    withCredentials: true,
-}));
-
-app.get("/data", (req, res) => {
-    res.status(200).json({
-        message: "Course details fetched successfully",
-        data: {
-            course: "React",
-            instructor: "Dibyo",
-            duration: "4 weeks",
-            price: 2000,
-        }
-    });
-});
+connectDb();
 
 app.listen(PORT, () => {
-    console.log(`Sever is listening on: ${PORT}`);
+    console.log(`Server is listening on: ${PORT}`);
 });
