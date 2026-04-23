@@ -1,0 +1,71 @@
+.footer {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  &__container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  &__section {
+    display: flex;
+    flex-direction: column;
+  }
+  &__logo {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  &__text {
+    font-size: 14px;
+    color: #d1d5db;
+    line-height: 1.6;
+  }
+  &__heading {
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  &__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    li {
+      font-size: 14px;
+      color: #d1d5db;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  &__socials {
+    display: flex;
+    gap: 16px;
+    div {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+  &__bottom {
+    text-align: center;
+    font-size: 14px;
+    color: #9ca3af;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 0;
+  }
+}
