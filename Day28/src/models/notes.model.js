@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const notesSchema = new mongoose.Schema({
     title: String,
     description: String,
-    user: {
-        type: String,
-        ref: "users",
+    userId:{
+        type:String,
+        ref:'User'
     },
 });
 
