@@ -4,11 +4,10 @@ const jwt = require('jsonwebtoken');
 
 notesRouter.post('/create', async (req, res) => {
     const { title, description } = req.body;
-
     const token = req.cookies.jwt_token;
 
     if (!token) {
-        res.status(401).json({ message: "Unauthorized" });
+        res.status(200).json({ message: "Unauthorized" });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -20,7 +19,7 @@ notesRouter.post('/create', async (req, res) => {
     });
 
     res.status(201).json({
-        message: "Note Created Successfully",
+        message: "Notes Created Successfully",
         newNote,
     });
 });
