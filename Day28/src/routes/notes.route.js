@@ -7,20 +7,21 @@ notesRouter.post('/create', async (req, res) => {
     const token = req.cookies.jwt_token;
 
     if (!token) {
-        res.status(200).json({ message: "Unauthorized" });
+        return res.status(401).json({ message: 'Unauthorized' });
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const newNote = await notesModel.create({
+    const newNote = new notesModel({
         title,
         description,
-        user: decoded.username,
+        user: decoded._id
     });
 
-    res.status(201).json({
-        message: "Notes Created Successfully",
-        newNote,
+    await newNote.save();
+
+    return res.status(201).json({
+        message: 'Note created successfully', note: newNote,
     });
 });
 

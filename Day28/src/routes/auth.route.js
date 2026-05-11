@@ -7,24 +7,31 @@ authRouter.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-        res.status(400).json({ message: "Please Provide All Fields!" });
+        return res.status(400).json({
+            message: 'Please provide all the details',
+        });
     }
 
-    const isUserExists = await authModel.findOne({ email });
+    const user = await authModel.findOne({ email });
 
-    if (isUserExists) {
-        res.status(400).json({ message: "Email Already exists" });
+    if (user) {
+        return res.status(400).json({
+            message: 'User already exists',
+        });
     }
 
     try {
         const hashPass = crypto.createHash('md5').update(password).digest('hex');
-        const newuser = await authModel.create({ username, email, password: hashPass });
+        const newUser = await authModel.create({ username, email, password: hashPass });
 
-        res.status(201).json({
-            message: "User Registered Successfully",
+        return res.status(201).json({
+            message: 'User created successfully',
+            user: newUser,
         });
     } catch (err) {
-        res.status(400).json({ message: "Error in registration!" });
+        return res.status(500).json({
+            message: 'Internal server error',
+        });
     }
 });
 
@@ -32,52 +39,58 @@ authRouter.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        res.status(400).json({ message: "Please Provide All Fields!" });
-    }
-
-    try {
-        const user = await authModel.findOne({ email });
-
-        if (!user) {
-            res.status(404).json({ message: "User Not Found!" });
-        }
-
-        const hashPass = crypto.createHash('md5').update(password).digest('hex');
-
-        if (user.password != hashPass) {
-            res.status(401).json({ message: "Invalid Credential" });
-        }
-
-        const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET);
-        res.cookie('jwt_token', token);
-
-        res.status(200).json({
-            message: "User Login Successfull!",
-            data: {
-                username: user.username,
-                email: user.email,
-            },
+        return res.status(400).json({
+            message: 'Please provide all the details',
         });
-    } catch (err) {
-        res.status(500).json({ message: "Error in Logging" });
     }
+
+    const user = await authModel.findOne({ email });
+
+    if (!user) {
+        return res.status(400).json({
+            message: 'User does not exist',
+        });
+    }
+
+    const hashPass = crypto.createHash('md5').update(password).digest('hex');
+
+    if (hashPass !== user.password) {
+        return res.status(400).json({
+            message: 'Invalid password',
+        });
+    }
+
+    const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET);
+    res.cookie('jwt_token', token);
+
+    return res.status(200).json({
+        message: 'Login successful',
+        data: {
+            username: user.username,
+            email: user.email,
+        }
+    });
 });
 
 authRouter.post('/protected', (req, res) => {
     const token = req.cookies.jwt_token;
 
     if (!token) {
-        res.status(200).json({ message: "Unauthorized" });
+        return res.status(401).json({
+            message: 'Unauthorized',
+        });
     }
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        res.status(200).json({
-            message: "Protected route accessed successfully",
+        return res.status(200).json({
+            message: 'Protected route',
             data: decoded,
         });
     } catch (err) {
-        res.status(401).json({ message: "Inavlid Token" });
+        return res.status(401).json({
+            message: 'Invalid token',
+        });
     }
 });
 
