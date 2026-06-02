@@ -14,6 +14,8 @@ const postSchema = new mongoose.Schema({
         ref: "users",
         required: [true, "userId required for creating a post"],
     },
+}, {
+    timestamps: true
 });
 
 const postModel = mongoose.model("posts", postSchema);
