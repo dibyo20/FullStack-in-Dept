@@ -29,7 +29,7 @@ async function createPost(req, res) {
 
 async function getPosts(req, res) {
     const userId = req.user.id;
-    const posts = await postModel.find({ user: userId });
+    const posts = await postModel.find({ user: userId }).populate("user");
 
     return res.status(200).json({
         message: "Posts fetched successfully",
