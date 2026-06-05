@@ -20,12 +20,12 @@ postRouter.get("/", identifyUser, getPosts);
  * - req.params = { id }
  * - return a detail about a post with id & also check if the post belongs to the user or not
  */
-postRouter.get("/:id", identifyUser, getPostDetails);
+postRouter.get("/details/:id", identifyUser, getPostDetails);
 
 /**
  * GET /api/posts/all [protected]
  */
-postRouter.get("/all", identifyUser, getAllPosts);
+postRouter.get("/feed", identifyUser, getAllPosts);
 
 /**
  * POST /api/posts/like/:postId [protected]
