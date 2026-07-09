@@ -9,31 +9,45 @@ const imagekit = new ImageKit({
 });
 
 async function createPost(req, res) {
-    const file = await imagekit.files.upload({
-        file: await toFile(Buffer.from(req.file.buffer), "file"),
-        fileName: "Test",
-        folder: "Clicksy",
-    });
+    try {
+        console.log("file:", req.file);
+        console.log("user:", req.user);
 
-    const post = await postModel.create({
-        caption: req.body.caption,
-        imgurl: file.url,
-        user: req.user.id,
-    });
+        const file = await imagekit.files.upload({
+            file: await toFile(Buffer.from(req.file.buffer), "file"),
+            fileName: "Test",
+            folder: "Clicksy",
+        });
 
-    return res.status(201).json({
-        message: "Post created successfully",
-        post: post,
-    });
+        const post = await postModel.create({
+            caption: req.body.caption,
+            imgurl: file.url,
+            user: req.user.id,
+        });
+
+        await post.populate("user", "-password");
+
+        return res.status(201).json({
+            message: "Post created successfully",
+            post: post,
+        });
+    } catch (err) {
+        return res.status(500).json({
+            message: err.message,
+        });
+    }
+
 }
 
-async function getPosts(req, res) {
+async function getUserPosts(req, res) {
     const userId = req.user.id;
     const posts = await postModel.find({ user: userId }).populate("user", "-password");
+    const countPosts = posts.length;
 
     return res.status(200).json({
         message: "Posts fetched successfully",
         posts: posts,
+        countPosts: countPosts,
     });
 }
 
@@ -57,14 +71,26 @@ async function getPostDetails(req, res) {
         });
     }
 
+    const likes = await likeModel.find({ post: postId });
+    const countLikes = likes.length;
+
     return res.status(200).json({
         message: "Post details fetched successfully",
         post: post,
+        countLikes: countLikes,
     });
 }
 
 async function getAllPosts(req, res) {
-    const posts = await postModel.find().populate("user");
+    const posts = await Promise.all((await postModel.find().populate("user", "-password").sort({ _id: -1 }).lean())
+        .map(async (post) => {
+            const isLiked = await likeModel.findOne({
+                user: req.user.username,
+                post: post._id,
+            });
+            post.isLiked = Boolean(isLiked);
+            return post;
+        }));
 
     return res.status(200).json({
         message: "Posts fetched successfully",
@@ -84,6 +110,14 @@ async function likePost(req, res) {
         });
     }
 
+    const isLiked = await likeModel.findOne({ user: username, post: postId });
+
+    if (isLiked) {
+        return res.status(400).json({
+            message: "You have already liked this post"
+        });
+    }
+
     const like = await likeModel.create({
         user: username,
         post: postId,
@@ -95,10 +129,42 @@ async function likePost(req, res) {
     });
 }
 
+async function unlikePost(req, res) {
+    const username = req.user.username;
+    const postId = req.params.postId;
+
+    const post = await postModel.findById(postId);
+
+    if (!post) {
+        return res.status(404).json({
+            message: "Post not found"
+        });
+    }
+
+    const isLiked = await likeModel.findOne({ user: username, post: postId });
+
+    if (!isLiked) {
+        return res.status(400).json({
+            message: "You have not liked this post"
+        });
+    }
+
+    const unlike = await likeModel.findOneAndDelete({
+        user: username,
+        post: postId,
+    });
+
+    return res.status(200).json({
+        message: "Post unliked successfully",
+        unlike,
+    });
+}
+
 module.exports = {
     createPost,
-    getPosts,
+    getUserPosts,
     getPostDetails,
     getAllPosts,
     likePost,
+    unlikePost,
 };

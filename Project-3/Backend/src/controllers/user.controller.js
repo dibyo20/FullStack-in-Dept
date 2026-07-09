@@ -1,7 +1,36 @@
 const followModel = require("../models/follow.model.js");
 const userModel = require("../models/user.model.js");
+const ImageKit = require("@imagekit/nodejs");
+const { toFile } = require("@imagekit/nodejs");
+
+const imagekit = new ImageKit({
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+});
 
 async function getUserProfile(req, res) {
+    const user = await userModel.findOne({ username: req.user.username });
+    res.status(200).json({ user });
+}
+
+async function updateProfile(req, res) {
+    const { fullname, bio } = req.body;
+    await userModel.findOneAndUpdate({ username: req.user.username }, { fullname: fullname, bio: bio });
+
+    const user = await userModel.findOne({ username: req.user.username });
+    res.status(200).json({
+        user: user
+    });
+}
+
+async function updateProfilePicture(req, res) {
+    const file = await imagekit.files.upload({
+        file: await toFile(Buffer.from(req.file.buffer), "file"),
+        fileName: "Test",
+        folder: "Clicksy",
+    });
+
+    await userModel.findOneAndUpdate({ username: req.user.username }, { profileImage: file.url });
+
     const user = await userModel.findOne({ username: req.user.username });
     res.status(200).json({ user });
 }
@@ -57,15 +86,15 @@ async function unfollowUser(req, res) {
     });
 }
 
-async function followStatus(req, res) {
+async function requestedUsers(req, res) {
     const user = req.user.username;
 
-    const request = await followModel.findOne({
+    const request = await followModel.find({
         followee: user,
         status: "pending",
     });
 
-    return res.status(200).json({ request });
+    return res.status(200).json({ pendingRequests: request });
 }
 
 async function acceptUser(req, res) {
@@ -100,11 +129,60 @@ async function rejectUser(req, res) {
     });
 }
 
+async function followers(req, res) {
+    const user = req.user.username;
+    const followRecords = await followModel.find({ followee: user, status: "accepted" });
+    const followerUsernames = followRecords.map(f => f.follower);
+    const followers = await userModel.find({ username: { $in: followerUsernames } }).select("-password");
+    const countFollowers = followers.length;
+    return res.status(200).json({
+        followers,
+        countFollowers,
+        followerUsernames,
+        followRecords,
+    });
+}
+
+async function following(req, res) {
+    const user = req.user.username;
+    const followRecords = await followModel.find({ follower: user, status: "accepted" });
+    const followingUsernames = followRecords.map(f => f.followee);
+    const following = await userModel.find({ username: { $in: followingUsernames } }).select("-password");
+    const countFollowing = following.length;
+    return res.status(200).json({
+        following,
+        countFollowing,
+        followingUsernames,
+        followRecords,
+    });
+}
+
+async function notFollowing(req, res) {
+    try {
+        const user = req.user.username;
+        const following = await followModel.find({ follower: user, status: { $in: ["accepted", "pending"] } });
+        const followingUsers = following.map((follow) => follow.followee);
+
+        followingUsers.push(user);
+
+        const notFollowing = await userModel.find({ username: { $nin: followingUsers } });
+
+        return res.status(200).json({ users: notFollowing });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     getUserProfile,
+    updateProfile,
+    updateProfilePicture,
     followUser,
     unfollowUser,
-    followStatus,
+    requestedUsers,
     acceptUser,
     rejectUser,
-}
+    followers,
+    following,
+    notFollowing,
+};

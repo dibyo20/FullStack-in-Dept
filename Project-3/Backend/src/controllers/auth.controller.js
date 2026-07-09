@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 async function registerController(req, res) {
-    const { username, email, password, bio, profileImage } = req.body;
+    const { fullname, username, email, password, bio, profileImage } = req.body;
 
     const isUserExists = await userModel.findOne({
         $or: [{ username }, { email }],
@@ -18,6 +18,7 @@ async function registerController(req, res) {
     const hashedPassword = crypto.createHash("md5").update(password).digest("hex");
 
     const user = await userModel.create({
+        fullname,
         username,
         email,
         password: hashedPassword,
@@ -25,12 +26,18 @@ async function registerController(req, res) {
         profileImage,
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    res.cookie("token", token);
+    const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 24 * 60 * 60 * 1000
+    });
 
     return res.status(201).json({
         message: "User registered successfully",
         user: {
+            fullname: user.fullname,
             email: user.email,
             username: user.username,
             bio: user.bio,
@@ -72,12 +79,18 @@ async function loginController(req, res) {
         });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-    res.cookie("token", token);
+    const token = jwt.sign({ id: user._id, username: user.username }, process.env.JWT_SECRET, { expiresIn: "1d" });
+    res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 24 * 60 * 60 * 1000
+    });
 
     return res.status(200).json({
         message: "Login successful",
         user: {
+            fullname: user.fullname,
             username: user.username,
             email: user.email,
             bio: user.bio,
@@ -86,7 +99,21 @@ async function loginController(req, res) {
     });
 }
 
+async function logoutController(req, res) {
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+    });
+
+    res.status(200).json({
+        success: true,
+        message: "Logged out successfully",
+    });
+}
+
 module.exports = {
     registerController,
     loginController,
+    logoutController,
 };

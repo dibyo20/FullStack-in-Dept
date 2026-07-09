@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/PostCard.scss";
 
-const PostCard = ({ post, isLiked = false, likesCount = 0, onLike }) => {
+const PostCard = ({ post, isLiked, handleLike, handleUnlike }) => {
   const { _id, caption, imgurl, user, createdAt } = post;
   const { fullname, username, profileImage } = user;
 
@@ -11,7 +11,6 @@ const PostCard = ({ post, isLiked = false, likesCount = 0, onLike }) => {
     setIsBookmarked(!isBookmarked);
   };
 
-  // Helper to format time into "X hours ago", "X mins ago", etc.
   const getRelativeTime = (dateString) => {
     if (!dateString) return "JUST NOW";
     const date = new Date(dateString);
@@ -28,7 +27,6 @@ const PostCard = ({ post, isLiked = false, likesCount = 0, onLike }) => {
     return `${diffDays} ${diffDays === 1 ? "DAY" : "DAYS"} AGO`;
   };
 
-  // Parse hashtags from caption dynamically
   const parseHashtags = (text) => {
     if (!text) return [];
     const matches = text.match(/#[a-zA-Z0-9_]+/g);
@@ -45,18 +43,11 @@ const PostCard = ({ post, isLiked = false, likesCount = 0, onLike }) => {
       {/* Header */}
       <header className="post-header">
         <div className="post-author-info">
-          <img
-            src={profileImage}
-            alt={fullname}
-            className="author-avatar"
-            // onError={(e) => {
-            //   e.target.src = "https://ik.imagekit.io/ufnhisesq/instagram-posts/istockphoto-2177842022-1024x1024.jpg";
-            // }}
-          />
+          <img src={profileImage} alt={fullname} className="author-avatar" />
           <div className="author-details">
             <h3 className="author-name">{fullname}</h3>
             <p className="post-meta">
-              @{username || "anonymous"} • {getRelativeTime(createdAt)}
+              @{username} • {getRelativeTime(createdAt)}
             </p>
           </div>
         </div>
@@ -83,7 +74,9 @@ const PostCard = ({ post, isLiked = false, likesCount = 0, onLike }) => {
           <div className="left-interactions">
             {/* On click triggers onLike event prop */}
             <button
-              onClick={() => onLike && onLike(_id)}
+              onClick={() =>
+                isLiked ? handleUnlike(post._id)  : handleLike(post._id)
+              }
               className={`action-btn like-btn ${isLiked ? "liked" : ""}`}
               aria-label={isLiked ? "Unlike post" : "Like post"}
             >
@@ -175,11 +168,6 @@ const PostCard = ({ post, isLiked = false, likesCount = 0, onLike }) => {
               </svg>
             )}
           </button>
-        </div>
-
-        {/* Likes Count */}
-        <div className="likes-display">
-          <span>{likesCount.toLocaleString()} likes</span>
         </div>
 
         {/* Caption & Hashtags */}
