@@ -3,11 +3,12 @@ import Form from "./components/Form.jsx";
 import Card from "./components/Card.jsx";
 
 const App = () => {
-  const [task, setTask] = useState("");
   const [taskList, setTaskList] = useState([]);
   const addTask = (newTask) => {
-    setTaskList([...taskList, newTask]);
-    console.log(taskList);
+    setTaskList((prevTaskList) => [
+      ...prevTaskList,
+      { ...newTask, id: Date.now() },
+    ]);
   };
 
   const deleteTask = (id) => {
