@@ -1,0 +1,29 @@
+.form{
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: azure;
+}
+
+.taskCard{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: azure;
+}
+
+.completed{
+    text-decoration: line-through;
+    opacity: 0.5;
+}

@@ -7,7 +7,7 @@ const Form = ({ addTask }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title.trim() && !description.trim()) {
+    if (!title.trim() || !description.trim()) {
       alert("Please enter task");
       return;
     }
@@ -15,6 +15,7 @@ const Form = ({ addTask }) => {
     const newTask = {
       title: title,
       description: description,
+      completed: false,
     };
 
     addTask(newTask);
@@ -22,7 +23,7 @@ const Form = ({ addTask }) => {
     setDescription("");
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form">
       <input
         type="text"
         placeholder="Enter Task"
