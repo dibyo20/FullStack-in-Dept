@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   increament,
@@ -17,42 +16,11 @@ const App = () => {
     <>
       <Navbar />
       <h1>{num}</h1>
-
-      <button
-        onClick={() => {
-          dispatch(increament());
-        }}
-      >
-        increament
-      </button>
-      <button
-        onClick={() => {
-          dispatch(decreament());
-        }}
-      >
-        decreament
-      </button>
-      <button
-        onClick={() => {
-          dispatch(reset());
-        }}
-      >
-        reset
-      </button>
-      <button
-        onClick={() => {
-          dispatch(increamentBy5());
-        }}
-      >
-        increament by 5
-      </button>
-      <button
-        onClick={() => {
-          dispatch(decreamentBy5());
-        }}
-      >
-        decreament by 5
-      </button>
+      <button onClick={() => dispatch(increament())}>Increment</button>
+      <button onClick={() => dispatch(decreament())}>Decrement</button>
+      <button onClick={() => dispatch(reset())}>Reset</button>
+      <button onClick={() => dispatch(increamentBy5())}>Increment by 5</button>
+      <button onClick={() => dispatch(decreamentBy5())}>Decrement by 5</button>
     </>
   );
 };
