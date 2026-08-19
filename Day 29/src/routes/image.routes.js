@@ -1,7 +1,7 @@
 const imageRouter = require("express").Router();
 const imageModel = require("../models/image.model.js");
-const ImageKit = require("@imagekit/nodejs");
-const { toFile } = require("@imagekit/nodejs");
+const ImageKit = require("@imagekit/nodejs/index.js");
+const { toFile } = require("@imagekit/nodejs/index.js");
 const multer = require("multer");
 
 const upload = multer({ storage: multer.memoryStorage() });
