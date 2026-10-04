@@ -8,14 +8,14 @@ const io = new Server(httpServer, /*Options*/);
 io.on('connection', (socket) => {
     console.log('New Connection Created');
 
-    // socket.on("message", (msg) => {
-    //     console.log("user sent a message")
-    //     console.log(msg)
+    socket.on("message", (msg) => {
+        console.log("user sent a message")
+        console.log(msg)
 
-    //     io.emit("abc")
-    // });
+        io.emit("abc")
+    });
 });
 
-httpServer.listen(3000, () => {
-    console.log("Server is running on port 3000");
+httpServer.listen(5000, () => {
+    console.log("Server is running on port 5000");
 });
