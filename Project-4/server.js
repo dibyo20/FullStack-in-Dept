@@ -61,7 +61,7 @@ agent.on('connection', (socket) => {
     socket.on("agent", (message) => {
         customer.emit("agent", { sender: socket.id, message: message });
         agent.emit("agent", { sender: socket.id, message: message });
-    })
+    });
 });
 
 admin.on('connection', (socket) => {
@@ -70,7 +70,7 @@ admin.on('connection', (socket) => {
     socket.on("admin", (message) => {
         customer.emit("admin", { sender: socket.id, message: message });
         agent.emit("admin", { sender: socket.id, message: message });
-    })
+    });
 });
 
 httpServer.listen(3000, () => {
