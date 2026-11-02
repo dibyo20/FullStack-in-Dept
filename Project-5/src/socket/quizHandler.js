@@ -96,7 +96,7 @@ function setupQuizSocket(io) {
                 timeLimit: 10
             });
 
-            quizState.buzzerTimeout = setTimeout(() => {
+            quizState.buzzerLockTimer = setTimeout(() => {
                 if (quizState.status === "BUZZER_LOCKED") {
                     console.log(`Time out for ${socket.data.username}`);
                     quizState.buzzerWinner = null;
@@ -112,6 +112,11 @@ function setupQuizSocket(io) {
         socket.on("answer:submit", async ({ selectedAnswer }, callback) => {
             if (!quizState.buzzerWinner || quizState.buzzerWinner.socketId !== socket.id) {
                 return callback({ success: false, message: "You do not have the buzzer lock!" });
+            }
+
+            if (quizState.buzzerLockTimer) {
+                clearTimeout(quizState.buzzerLockTimer);
+                quizState.buzzerLockTimer = null;
             }
 
             const isCorrect = selectedAnswer === quizState.currentQuestion.correctAnswer;
