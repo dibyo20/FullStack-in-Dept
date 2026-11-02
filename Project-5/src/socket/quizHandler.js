@@ -154,7 +154,7 @@ function setupQuizSocket(io) {
                 quizState.buzzerWinner = null;
                 quizState.status = "QUESTION_ACTIVE";
 
-                io.to("quiz_arena").emit("buzzer: unlocked", {
+                io.to("quiz_arena").emit("buzzer:unlocked", {
                     message: "Buzzer owner disconnected! Buzzer is unlocked!"
                 });
             }
