@@ -145,7 +145,7 @@ function setupQuizSocket(io) {
         socket.on("disconnect", () => {
             console.log("Client disconnected:", socket.id);
 
-            if (quizState.buzzerWinner === socket.username) {
+            if (quizState.buzzerWinner?.socketId === socket.id) {
                 quizState.buzzerWinner = null;
                 quizState.status = "QUESTION_ACTIVE";
 
