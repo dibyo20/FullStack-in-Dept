@@ -70,7 +70,44 @@ function setupQuizSocket(io) {
             callback({ success: true, questionOrder: question.order });
         });
 
-        
+        socket.on("buzzer:press", (data, callback) => {
+            if (quizState.status !== "QUESTION_ACTIVE") {
+                return callback({ success: false, message: "Buzzer is not active!" });
+            }
+
+            if (quizState.buzzerWinner !== null) {
+                return callback({
+                    success: false,
+                    message: `Too slow! ${quizState.buzzerWinner.username} buzzed first.`
+                });
+            }
+
+            quizState.status = "BUZZER_LOCKED";
+            quizState.buzzerWinner = {
+                socketId: socket.id,
+                username: socket.data.username
+            };
+
+            callback({ success: true, message: "You got the buzzer! Submit your answer." });
+
+            io.to("quiz_arena").emit("buzzer:locked", {
+                winnerName: socket.data.username,
+                winnerId: socket.id,
+                timeLimit: 10
+            });
+
+            quizState.buzzerTimeout = setTimeout(() => {
+                if (quizState.status === "BUZZER_LOCKED") {
+                    console.log(`Time out for ${socket.data.username}`);
+                    quizState.buzzerWinner = null;
+                    quizState.status = "QUESTION_ACTIVE";
+
+                    io.to("quiz_arena").emit("buzzer:unlocked", {
+                        reason: "Buzzer is open reopened for others.",
+                    });
+                }
+            }, 10000);
+        });
 
 
     });
