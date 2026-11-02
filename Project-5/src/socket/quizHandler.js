@@ -103,7 +103,7 @@ function setupQuizSocket(io) {
                     quizState.status = "QUESTION_ACTIVE";
 
                     io.to("quiz_arena").emit("buzzer:unlocked", {
-                        reason: "Buzzer is open reopened for others.",
+                        message: "Buzzer is open reopened for others.",
                     });
                 }
             }, 10000);
@@ -142,6 +142,18 @@ function setupQuizSocket(io) {
             callback({ success: true, isCorrect });
         });
 
+        socket.on("disconnect", () => {
+            console.log("Client disconnected:", socket.id);
+
+            if (quizState.buzzerWinner === socket.username) {
+                quizState.buzzerWinner = null;
+                quizState.status = "QUESTION_ACTIVE";
+
+                io.to("quiz_arena").emit("buzzer: unlocked", {
+                    message: "Buzzer owner disconnected! Buzzer is unlocked!"
+                });
+            }
+        });
 
     });
 }
