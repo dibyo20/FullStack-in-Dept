@@ -26,7 +26,17 @@ function setupQuizSocket(io) {
             });
         });
 
-        
+        socket.on("admin:start_quiz", async (data, callback) => {
+            quizState.status = "ACTIVE";
+            quizState.currentQuestionIndex = 0;
+
+            io.emit("announcement:quiz_start", {
+                message: "A new Quiz is starting right now! Click to enter the arena.",
+                category: "Web Development & Sockets"
+            });
+
+            callback({ success: true, message: "Quiz started and popup broadcasted!" });
+        });
 
 
     });
