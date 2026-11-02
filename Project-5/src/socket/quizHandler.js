@@ -109,7 +109,38 @@ function setupQuizSocket(io) {
             }, 10000);
         });
 
-        
+        socket.on("answer:submit", async ({ selectedAnswer }, callback) => {
+            if (!quizState.buzzerWinner || quizState.buzzerWinner.socketId !== socket.id) {
+                return callback({ success: false, message: "You do not have the buzzer lock!" });
+            }
+
+            const isCorrect = selectedAnswer === quizState.currentQuestion.correctAnswer;
+            const username = socket.data.username;
+
+            if (isCorrect) {
+                const currentScore = quizState.scores.get(username) || 0;
+                const newScore = isCorrect ? (currentScore + quizState.currentQuestion.points) : 0;
+                quizState.scores.set(username, newScore);
+
+                await Score.findOneAndUpdate(
+                    { username },
+                    { $inc: { score: quizState.currentQuestion.points, correctAnswersCount: 1 } },
+                    { upsert: true, new: true }
+                );
+            }
+
+            io.to("quiz_arena").emit("answer:result", {
+                isCorrect,
+                username,
+                correctAnswer: quizState.currentQuestion.correctAnswer,
+                leaderboard: Array.from(quizState.scores.entries()).map(([user, pts]) => ({ username: user, score: pts }))
+            });
+
+            quizState.buzzerWinner = null;
+            quizState.status = "IDLE";
+
+            callback({ success: true, isCorrect });
+        });
 
 
     });
