@@ -38,6 +38,40 @@ function setupQuizSocket(io) {
             callback({ success: true, message: "Quiz started and popup broadcasted!" });
         });
 
+        socket.on("admin:next_question", async (data, callback) => {
+            if (quizState.buzzerLockTimer) {
+                clearTimeout(quizState.buzzerLockTimer);
+                quizState.buzzerLockTimer = null;
+            }
+
+            quizState.currentQuestionIndex += 1;
+
+            const question = await Question.findOne({ order: quizState.currentQuestionIndex });
+
+            if (!question) {
+                quizState.status = "ENDED";
+                return io.to("quiz_arena").emit("quiz:ended", {
+                    message: "Quiz has ended! Check the leaderboard for the results.",
+                    leaderboard: Array.from(quizState.scores.entries()).map(([username, score]) => ({ username, score }))
+                });
+            }
+
+            quizState.currentQuestion = question;
+            quizState.status = "QUESTION_ACTIVE";
+            quizState.buzzerWinner = null;
+
+            io.to("quiz_arena").emit("question:new", {
+                order: question.order,
+                questionText: question.questionText,
+                options: question.options,
+                points: question.points
+            });
+
+            callback({ success: true, questionOrder: question.order });
+        });
+
+        
+
 
     });
 }
