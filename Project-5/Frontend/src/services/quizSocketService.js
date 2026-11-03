@@ -1,23 +1,23 @@
 import { socket } from "../config/socket";
 
 export const quizSocketService = {
-  joinQuiz: (username, callback) => {
+  joinQuiz: (username, callback = () => {}) => {
     socket.emit("quiz:join", { username }, callback);
   },
 
-  pressBuzzer: (callback) => {
+  pressBuzzer: (callback = () => {}) => {
     socket.emit("buzzer:press", {}, callback);
   },
 
-  submitAnswer: (selectedAnswer, callback) => {
+  submitAnswer: (selectedAnswer, callback = () => {}) => {
     socket.emit("answer:submit", { selectedAnswer }, callback);
   },
 
-  startQuiz: (callback) => {
+  startQuiz: (callback = () => {}) => {
     socket.emit("admin:start_quiz", {}, callback);
   },
 
-  nextQuestion: (callback) => {
+  nextQuestion: (callback = () => {}) => {
     socket.emit("admin:next_question", {}, callback);
   },
 
