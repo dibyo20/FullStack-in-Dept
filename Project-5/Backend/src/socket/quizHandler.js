@@ -8,7 +8,10 @@ function setupQuizSocket(io) {
 
         socket.on("quiz:join", ({ username }, callback) => {
             if (!username || !username.trim()) {
-                return callback({ success: false, message: "Valid username required" });
+                if (typeof callback === "function") {
+                    return callback({ success: false, message: "Valid username required" });
+                }
+                return;
             }
 
             socket.data.username = username;
@@ -18,7 +21,9 @@ function setupQuizSocket(io) {
                 quizState.scores.set(username, 0);
             }
 
-            callback({ success: true, message: `Welcome to the Quiz, ${username}!` });
+            if (typeof callback === "function") {
+                callback({ success: true, message: `Welcome to the Quiz, ${username}!` });
+            }
 
             io.to("quiz_arena").emit("quiz:player_joined", {
                 username,
@@ -35,7 +40,9 @@ function setupQuizSocket(io) {
                 category: "Web Development & Sockets"
             });
 
-            callback({ success: true, message: "Quiz started and popup broadcasted!" });
+            if (typeof callback === "function") {
+                callback({ success: true, message: "Quiz started and popup broadcasted!" });
+            }
         });
 
         socket.on("admin:next_question", async (data, callback) => {
@@ -50,10 +57,14 @@ function setupQuizSocket(io) {
 
             if (!question) {
                 quizState.status = "ENDED";
-                return io.to("quiz_arena").emit("quiz:ended", {
+                io.to("quiz_arena").emit("quiz:ended", {
                     message: "Quiz has ended! Check the leaderboard for the results.",
                     leaderboard: Array.from(quizState.scores.entries()).map(([username, score]) => ({ username, score }))
                 });
+                if (typeof callback === "function") {
+                    return callback({ success: false, message: "No more questions." });
+                }
+                return;
             }
 
             quizState.currentQuestion = question;
@@ -67,19 +78,27 @@ function setupQuizSocket(io) {
                 points: question.points
             });
 
-            callback({ success: true, questionOrder: question.order });
+            if (typeof callback === "function") {
+                callback({ success: true, questionOrder: question.order });
+            }
         });
 
         socket.on("buzzer:press", (data, callback) => {
-            if (quizState.status !== "QUESTION_ACTIVE") {
-                return callback({ success: false, message: "Buzzer is not active!" });
+            if (quizState.status === "BUZZER_LOCKED" || quizState.buzzerWinner !== null) {
+                if (typeof callback === "function") {
+                    return callback({
+                        success: false,
+                        message: `Too slow! ${quizState.buzzerWinner?.username || "Someone"} buzzed first.`
+                    });
+                }
+                return;
             }
 
-            if (quizState.buzzerWinner !== null) {
-                return callback({
-                    success: false,
-                    message: `Too slow! ${quizState.buzzerWinner.username} buzzed first.`
-                });
+            if (quizState.status !== "QUESTION_ACTIVE") {
+                if (typeof callback === "function") {
+                    return callback({ success: false, message: "Buzzer is not active!" });
+                }
+                return;
             }
 
             quizState.status = "BUZZER_LOCKED";
@@ -88,7 +107,9 @@ function setupQuizSocket(io) {
                 username: socket.data.username
             };
 
-            callback({ success: true, message: "You got the buzzer! Submit your answer." });
+            if (typeof callback === "function") {
+                callback({ success: true, message: "You got the buzzer! Submit your answer." });
+            }
 
             io.to("quiz_arena").emit("buzzer:locked", {
                 winnerName: socket.data.username,
@@ -111,7 +132,10 @@ function setupQuizSocket(io) {
 
         socket.on("answer:submit", async ({ selectedAnswer }, callback) => {
             if (!quizState.buzzerWinner || quizState.buzzerWinner.socketId !== socket.id) {
-                return callback({ success: false, message: "You do not have the buzzer lock!" });
+                if (typeof callback === "function") {
+                    return callback({ success: false, message: "You do not have the buzzer lock!" });
+                }
+                return;
             }
 
             if (quizState.buzzerLockTimer) {
@@ -124,13 +148,13 @@ function setupQuizSocket(io) {
 
             if (isCorrect) {
                 const currentScore = quizState.scores.get(username) || 0;
-                const newScore = isCorrect ? (currentScore + quizState.currentQuestion.points) : 0;
+                const newScore = currentScore + quizState.currentQuestion.points;
                 quizState.scores.set(username, newScore);
 
                 await Score.findOneAndUpdate(
                     { username },
                     { $inc: { score: quizState.currentQuestion.points, correctAnswersCount: 1 } },
-                    { upsert: true, new: true }
+                    { upsert: true, returnDocument: "after" }
                 );
             }
 
@@ -144,13 +168,20 @@ function setupQuizSocket(io) {
             quizState.buzzerWinner = null;
             quizState.status = "IDLE";
 
-            callback({ success: true, isCorrect });
+            if (typeof callback === "function") {
+                callback({ success: true, isCorrect });
+            }
         });
 
         socket.on("disconnect", () => {
             console.log("Client disconnected:", socket.id);
 
             if (quizState.buzzerWinner?.socketId === socket.id) {
+                if (quizState.buzzerLockTimer) {
+                    clearTimeout(quizState.buzzerLockTimer);
+                    quizState.buzzerLockTimer = null;
+                }
+
                 quizState.buzzerWinner = null;
                 quizState.status = "QUESTION_ACTIVE";
 
