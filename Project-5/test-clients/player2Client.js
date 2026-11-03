@@ -12,7 +12,7 @@ socket.on("question:new", (q) => {
     console.log(`\n[Bob Question ${q.order}]: ${q.questionText}`);
 
     setTimeout(() => {
-        console.log("⚡ Bob is trying to press buzzer");
+        console.log("Bob is trying to press buzzer");
         socket.emit("buzzer:press", {}, (ack) => {
             console.log("Bob Buzzer Result:", ack);
         });
