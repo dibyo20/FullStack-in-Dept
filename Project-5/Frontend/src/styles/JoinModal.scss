@@ -1,0 +1,58 @@
+.join-modal {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  max-width: 360px;
+  margin: 40px auto;
+
+  &__title {
+    font-size: 22px;
+    color: #f8fafc;
+    margin: 0 0 16px 0;
+  }
+
+  &__announcement {
+    background-color: #334155;
+    color: #38bdf8;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__input {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 15px;
+    color: #f8fafc;
+
+    &:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+  }
+
+  &__button {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #1d4ed8;
+    }
+  }
+}

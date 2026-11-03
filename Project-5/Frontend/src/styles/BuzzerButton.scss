@@ -1,0 +1,27 @@
+.buzzer-btn {
+  display: block;
+  width: 140px;
+  height: 140px;
+  margin: 20px auto;
+  border-radius: 50%;
+  border: none;
+  background-color: #dc2626;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #991b1b;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #991b1b;
+  }
+
+  &:disabled {
+    background-color: #475569;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
