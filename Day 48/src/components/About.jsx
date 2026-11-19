@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
 
-const About = () => {
+const About = ({ greet }) => {
+
+    console.log("About Rendered");
   return (
-    <div>About</div>
-  )
-}
+    <div>
+      
+    </div>
+  );
+};
 
-export default About
+export default React.memo(About);
