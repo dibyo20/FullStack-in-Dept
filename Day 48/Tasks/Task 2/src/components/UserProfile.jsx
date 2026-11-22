@@ -1,8 +1,5 @@
 import React from "react";
 
-// BASELINE (UNOPTIMIZED):
-// This is a plain component without React.memo.
-// TODO FOR YOU: Wrap this component with React.memo to avoid re-rendering when 'username' has not changed!
 const UserProfile = ({ username }) => {
   console.log("UserProfile rendered with username:", username);
 
@@ -17,4 +14,4 @@ const UserProfile = ({ username }) => {
   );
 };
 
-export default UserProfile;
+export default React.memo(UserProfile);
