@@ -1,8 +1,5 @@
 import React from "react";
 
-// NOTICE: UserActions IS already wrapped with React.memo!
-// BUT because 'updateUsername' in App gets a new reference on every render,
-// React.memo thinks props changed, and still re-renders this child!
 const UserActions = React.memo(({ username, updateUsername }) => {
   console.log("UserActions child rendered! (Props checked)");
 
