@@ -12,6 +12,10 @@ function App() {
     return num * 10;
   };
 
+  // const calculatedResult = useMemo(() => {
+  //   return calculateExpensiveValue(number);
+  // }, [number]);
+
   const calculatedResult = calculateExpensiveValue(number);
 
   console.log("App component rendered.");
