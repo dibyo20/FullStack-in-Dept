@@ -1,9 +1,6 @@
 import React from "react";
 
-// BASELINE (UNOPTIMIZED):
-// This component is NOT memoized.
-// TODO FOR YOU: Wrap ProductList with React.memo so it only re-renders when the products prop changes!
-const ProductList = ({ products }) => {
+const ProductList = React.memo(({ products }) => {
   console.log("ProductList rendered! Number of products:", products.length);
 
   return (
@@ -25,6 +22,6 @@ const ProductList = ({ products }) => {
       </ul>
     </div>
   );
-};
+});
 
 export default ProductList;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ProductList from "./components/ProductList";
 import "./App.css";
 
@@ -17,28 +17,25 @@ function App() {
 
   console.log("App rendered - count:", count, "category:", category, "sortBy:", sortBy);
 
-  // BASELINE (UNOPTIMIZED):
-  // This filtering & sorting recalculates on EVERY render (e.g. when count changes).
-  // TODO FOR YOU: Wrap this calculation in useMemo with dependencies [category, sortBy].
-  console.log("Filtering and sorting products calculation running...");
-  const filteredProducts =
-    category === "All"
-      ? initialProducts
-      : initialProducts.filter((p) => p.category === category);
+  const processedProducts = useMemo(() => {
+    console.log("Filtering and sorting products calculation running...");
 
-  const processedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "low-to-high") return a.price - b.price;
-    if (sortBy === "high-to-low") return b.price - a.price;
-    return 0;
-  });
+    const filtered =
+      category === "All"
+        ? initialProducts
+        : initialProducts.filter((p) => p.category === category);
+
+    return [...filtered].sort((a, b) => {
+      if (sortBy === "low-to-high") return a.price - b.price;
+      if (sortBy === "high-to-low") return b.price - a.price;
+      return 0;
+    });
+  }, [category, sortBy]);
 
   return (
     <div className="container">
       <div className="card">
         <h2>Task 4: Product Filtering & Sorting</h2>
-        <p className="subtitle">
-          Optimize data transformation with useMemo and child rendering with React.memo.
-        </p>
 
         <div className="counter-box">
           <span className="label">Unrelated Counter: <strong>{count}</strong></span>
@@ -68,17 +65,6 @@ function App() {
         </div>
 
         <ProductList products={processedProducts} />
-
-        <div className="hint-box">
-          <strong>Testing instructions:</strong>
-          <ol>
-            <li>Open DevTools Console (F12).</li>
-            <li>Click "Increment Counter" 5 times - notice both the calculation and <code>ProductList</code> run every time!</li>
-            <li>Wrap the filtering and sorting logic in <code>useMemo</code>.</li>
-            <li>Wrap <code>ProductList</code> in <code>React.memo</code>.</li>
-            <li>Click "Increment Counter" again - neither the calculation nor <code>ProductList</code> should re-run!</li>
-          </ol>
-        </div>
       </div>
     </div>
   );
