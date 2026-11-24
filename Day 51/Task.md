@@ -4,7 +4,7 @@ Authentication Logic
 Middleware & Controller
 Testing (Ai)
 
-using zod ... create a vlidation file named "auth.validation.ts"
+using zod... create a validation file named "auth.validation.ts"
 
 registerSchema
 loginSchema
